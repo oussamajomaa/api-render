@@ -9,14 +9,15 @@ const loisirRoute = require('./routes/loisir')
 const competenceRoute = require('./routes/competence')
 const userRoute = require('./routes/user')
 const cors = require('cors')
-const URL_MONGODB = 'mongodb+srv://osmjom:root@cv.awgtwhz.mongodb.net/cv?retryWrites=true&w=majority&appName=cv'
+require('dotenv').config()
+const URL_MONGODB = process.env.URL_MONGODB
 const cookieParser = require('cookie-parser');
 
 mongoose.connect(URL_MONGODB)
     .then(() => {
         console.log('App coonnected to database')
-        app.listen(3333, () => {
-            console.log('server is running on port 3333')
+        app.listen(process.env.PORT, () => {
+            console.log(`server is running on port ${process.env.PORT}`)
         })
     })
     .catch((error) => {

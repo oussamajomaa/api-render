@@ -14,6 +14,24 @@ router.post('/competence', async(req,res)=> {
     res.json({message:`la competence ${competence.skill} a été ajoutée`})
 })
 
+router.delete('/competence/:id', async(req,res)=> {
+    const {id} = req.params
+    const competence = await competenceModel.findById(id)
+
+    await competenceModel.findByIdAndDelete(id)
+    res.json({message:`la competence ${competence.skill} a été supprimée`})
+})
+
+// "667c108734275ae6d35372f6"
+
+
+
+
+
+
+
+
+
 router.put('/competence/:id', async(req,res)=> {
     const competence =req.body
     const {id} = req.params
@@ -22,13 +40,7 @@ router.put('/competence/:id', async(req,res)=> {
     res.json({message:`la competence ${updatedcompetence.skill} a été modifiée`})
 })
 
-router.delete('/competence/:id', async(req,res)=> {
-    const {id} = req.params
-    const competence = await competenceModel.findById(id)
 
-    await competenceModel.findByIdAndDelete(id)
-    res.json({message:`la competence ${competence.skill} a été supprimée`})
-})
 
 
 module.exports = router

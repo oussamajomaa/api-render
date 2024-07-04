@@ -1,13 +1,44 @@
 const express = require('express')
 const router = express.Router()
 const langueModel = require('../models/langue')
-const { findById } = require('../models/formation')
 
-
-router.get('/langue', async(req,res)=> {
+router.get('/langue',async(req,res)=>{
     const langues = await langueModel.find()
     res.json(langues)
 })
+
+router.post('/langue',async(req,res)=>{
+    const langue = req.body
+    await langueModel.create(langue)
+    res.json({message:'une nouvelle langue a été ajoutée'})
+})
+
+router.delete('/langue/:id', async(req,res)=>{
+    const id = req.params.id
+    await langueModel.findByIdAndDelete(id)
+    res.json({message:'une langue a été supprimée'})
+})
+
+module.exports = router
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 router.post('/langue', async(req,res)=> {
     const langue = req.body

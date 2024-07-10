@@ -27,7 +27,7 @@ mongoose.connect(URL_MONGODB)
 
 const app = express()
 app.use(express.json())
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }))
+app.use(cors({ credentials: true, origin: "https://client-cv-render.onrender.com" }))
 app.use(cookieParser())
 
 // app.use('', contactRoute)
